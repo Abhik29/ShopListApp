@@ -1,0 +1,27 @@
+<ion-view view-title='Shopping Cart'>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="item in cart | orderBy:'item' ">
+      <div ng-class="{'cart-item-picked':item.picked}">
+        <ion-checkbox style="float:left;border-style:none" class="checkbox-square" data-ng-model='item.picked' data-ng-change="picked(item)"></ion-checkbox>
+        <div style="display:'inline'">
+          <span class="cart-item-header">{{item.item}}</span> <span ng-show="item.desc!==''" class="cart-item-description">({{item.desc}})</span>
+        </div>
+        <div>
+          <span class="cart-label" ng-show="item.quantity !== ''">Quantity: </span> 
+          <span class="cart-item-data">{{item.quantity + ' ' + item.unit}}</span>
+        </div>
+      </div>
+    </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer-bar align-title="centre" class="bar-stable">
+  <input type="text" class="cart-inputBox" placeholder="Your own content" ng-keyup="$event.keyCode == 13 && add()" ng-model="shrtCutItem">
+  <h1 class="title"></h1>
+  <div class="buttons">
+    <span class="button balanced icon ion-refresh" ng-click="refresh()"></span>
+    <span class="button balanced icon ion-plus-circled" ng-click="add()"></span>
+  </div>
+  
+</ion-view>
